@@ -31,7 +31,7 @@
 
   <style>
    :root{
-  --brand: #C8B38A; /* Beige del logo */
+  --brand: #D6C29A; /* Beige un poco más claro, misma gama */
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.78);
   --line: rgba(255,255,255,.32);
@@ -85,12 +85,12 @@
     }
 
   h1{
-  margin: 0;
+  margin: 8px 0 18px; /* 👈 SUBE el título y lo centra mejor */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
   line-height: 1.15;
-  font-size: clamp(16px, 2vw, 26px); /* 👈 MÁS CHICO */
+  font-size: clamp(16px, 2vw, 26px);
   text-shadow: 0 16px 60px rgba(0,0,0,.55);
 }
 
@@ -120,8 +120,8 @@
 
 
     .btn:hover{
-  background: transparent;
-  color: var(--brand);
+  background: rgba(214,194,154,0.15); /* halo suave */
+  color: #000;
   border-color: var(--brand);
   transform: translateY(-1px);
 }
