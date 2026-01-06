@@ -82,28 +82,15 @@
       filter: drop-shadow(0 18px 55px rgba(0,0,0,.55));
     }
 
-    .title{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:6px;
-      text-transform:uppercase;
-      margin:0;
-    }
-
-    .title .brand{
-      font-weight:700;
-      letter-spacing:.18em;
-      font-size:clamp(28px,4.2vw,46px);
-      line-height:1.1;
-    }
-
-    .title .descriptor{
-      font-weight:400;
-      letter-spacing:.22em;
-      font-size:clamp(12px,1.8vw,15px);
-      opacity:.75;
-    }
+  h1{
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  line-height: 1.15;
+  font-size: clamp(24px, 3.8vw, 44px); /* 👈 MÁS CHICO */
+  text-shadow: 0 16px 60px rgba(0,0,0,.55);
+}
 
     .kicker{
       max-width:720px;
@@ -203,10 +190,7 @@
       <img src="logo.PNG" alt="QUASSOLO" class="logo" />
 
       <!-- 2. TÍTULO -->
-      <h1 class="title">
-        <span class="brand">QUASSOLO</span>
-        <span class="descriptor">Mueblería de diseño</span>
-      </h1>
+      <h1>QUASSOLO - Mueblería de diseño</h1>
 
       <!-- 3. FRASE -->
       <div class="kicker">
