@@ -1,83 +1,1204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUASSOLO | Amoblamientos a medida</title>
+  <meta name="description" content="Diseño y fabricación de amoblamientos a medida. Agendá una reunión por WhatsApp." />
+  <meta name="theme-color" content="#0b0b0b" />
 
-  <!-- Meta OG/Facebook -->
+  <!-- Open Graph (para que se vea bien al compartir) -->
+  <meta property="og:title" content="QUASSOLO | Amoblamientos a medida" />
+  <meta property="og:description" content="Diseño, fabricación e instalación. Agendá una reunión por WhatsApp." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="¡Activá tu cuenta y recibí un bono ahora!" />
-  <meta property="og:description" content="Hablá por WhatsApp con un cajero disponible y activá tu cuenta en minutos." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/Favio1980/nebula/main/perro.jpeg" />
-  <meta property="og:url" content="https://rednebulaganamos.netlify.app/" />
+  <!-- Si querés, poné una imagen: /assets/hero.jpg -->
+  <meta property="og:image" content="/assets/hero.jpg" />
 
-  <!-- Meta Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content=" " />
-  <meta name="twitter:description" content=" " />
-  <meta name="twitter:image" content="https://via.placeholder.com/1x1.png?text=+" />
+  <!-- Favicon (opcional) -->
+  <!-- <link rel="icon" href="/assets/favicon.png" /> -->
 
-  <!-- Meta estándar -->
-  <meta name="description" content=" " />
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel (PEGÁ TU PIXEL ID) -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1360284961962516');
-  fbq('track', 'PageView');
+    // 1) REEMPLAZAR con tu Pixel ID
+    const META_PIXEL_ID = "PEGAR_TU_PIXEL_ID_AQUI";
+
+    // Carga del Pixel
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    if (META_PIXEL_ID && META_PIXEL_ID !== "PEGAR_TU_PIXEL_ID_AQUI") {
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1360284961962516&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=PEGAR_TU_PIXEL_ID_AQUI&ev=PageView&noscript=1" />
+  </noscript>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.35);
+      --btnHover: rgba(255,255,255,.12);
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --maxw: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* HERO FULLSCREEN */
+    .hero{
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 28px 18px;
+      background: url("/assets/hero.jpg") center/cover no-repeat fixed;
+    }
+
+    /* Para iOS: fixed a veces se ve raro, lo apagamos en pantallas chicas */
+    @media (max-width: 768px){
+      .hero{ background-attachment: scroll; }
+    }
+
+    /* Overlay cinematográfico */
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 600px at 50% 60%, rgba(0,0,0,.15), rgba(0,0,0,.72)),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.70));
+    }
+
+    /* Header minimal arriba */
+    .topbar{
+      position:absolute;
+      top: 0;
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 18px;
+      z-index: 3;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--text);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .brand img{
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      opacity: .9;
+      user-select:none;
+    }
+    .menu .pill{
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.15);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Contenido central */
+    .content{
+      position:relative;
+      z-index:2;
+      max-width: var(--maxw);
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 18px;
+      padding-top: 54px; /* espacio por topbar */
+    }
+
+    .logo-big{
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 18px 55px rgba(0,0,0,.55));
+    }
+
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      font-weight: 500;
+    }
+
+    h1{
+      margin: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      line-height: 1.05;
+      font-size: clamp(34px, 6vw, 64px);
+      text-shadow: var(--shadow);
+    }
+
+    .sub{
+      max-width: 760px;
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.7;
+      color: var(--muted);
+      margin-top: 4px;
+      padding: 0 6px;
+    }
+
+    .zone{
+      margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.70);
+      border-top: 1px solid rgba(255,255,255,.18);
+      padding-top: 14px;
+      max-width: 860px;
+    }
+
+    .cta{
+      margin-top: 6px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 16px 26px;
+      border: 1px solid var(--line);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-radius: 2px;
+      background: rgba(0,0,0,.12);
+      backdrop-filter: blur(6px);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      min-width: 240px;
+    }
+    .btn:hover{
+      background: var(--btnHover);
+      border-color: rgba(255,255,255,.55);
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0); }
+
+    .hint{
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* Footer abajo estilo “minimal premium” */
+    .footer{
+      position:absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      z-index: 3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 18px 16px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    .social{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+    .social a{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      padding-bottom: 2px;
+      transition: opacity .15s ease;
+    }
+    .social a:hover{ opacity: .85; }
+
+    /* Botón/indicador central inferior (decorativo) */
+    .dot{
+      position:absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .dot::after{
+      content:"";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 0 18px rgba(255,255,255,.35);
+    }
+
+    /* Ajustes de legibilidad en pantallas muy chicas */
+    @media (max-width: 420px){
+      .brand{ font-size: 14px; }
+      .brand img{ width: 34px; height:34px; }
+      .logo-big{ width: 96px; height:96px; }
+      .btn{ min-width: 220px; padding: 15px 22px; }
+      .menu .pill{ display:none; } /* limpia arriba */
+    }
+  </style>
 </head>
+
 <body>
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="logo"></div>
-    <h1>¡Uníte a los que ya están ganando!</h1>
-    <h2>Hablá con nosotros por WhatsApp y activá tu cuenta en minutos</h2>
-    <div class="cta">
-      <a href="https://wa.me/3516375378?text=Hola%2C%20quiero%20comunicarme%20con%20un%20cajero%20disponible" 
-        class="cta-button" 
-        target="_blank" 
-        onclick="fbq('track', 'ContactarPorWhatsapp');">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-        Contactar por WhatsApp
+  <main class="hero" aria-label="Landing QUASSOLO">
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="Inicio QUASSOLO">
+        <img src="/assets/logo.png" alt="Logo QUASSOLO" />
+        <span>Quassolo</span>
       </a>
-    </div>
-    <div class="benefits">
-      <h3>Activá tu cuenta y recibí un bono de bienvenida exclusivo.</h3>
-    </div>
-  </div>
 
-  <div class="footer">
-    <div class="footer-item">
-      <img src="https://img.icons8.com/ios-filled/24/ffffff/headset.png" alt="Atención" />
-      <span>Atención 24/7</span>
+      <div class="menu" aria-hidden="true">
+        <span class="pill">Amoblamientos a medida</span>
+      </div>
     </div>
-    <div class="footer-item">
-      <img src="https://img.icons8.com/ios-filled/24/ffffff/money.png" alt="Pagos" />
-      <span>Pagos al instante</span>
-    </div>
-    <div class="footer-item">
-      <img src="https://img.icons8.com/ios-filled/24/ffffff/no-alcohol.png" alt="Responsable" />
-      <span>Jugá responsable (+18)</span>
-    </div>
-  </div>
 
-  <div class="notif" id="notifBox"></div>
+    <!-- Center content -->
+    <section class="content">
+      <!-- Logo arriba del “EXPLORE” como pediste -->
+      <img class="logo-big" src="/assets/logo.png" alt="QUASSOLO" />
 
-  <script src="script.js"></script>
+      <div class="kicker">Explore</div>
+
+      <h1>Nuevos<br/>proyectos</h1>
+
+      <p class="sub">
+        Diseñamos, fabricamos e instalamos <strong>cocinas a medida</strong> pensadas para tu espacio,
+        tu estilo y tu forma de vivir. Para avanzar, coordinamos una <strong>reunión</strong> (presencial o virtual)
+        y definimos tu proyecto con criterio profesional.
+      </p>
+
+      <div class="cta">
+        <a id="whatsappBtn" class="btn" href="#" rel="noopener" target="_blank">
+          Agendar reunión
+        </a>
+        <div class="hint">Respondemos por WhatsApp y coordinamos día y horario.</div>
+      </div>
+
+      <div class="zone">
+        Zonas: Morteros · Brinkmann · Porteña · Freyre · San Francisco · Suardi · San Guillermo · Villa Trinidad · La Paquita · Altos de Chipión · Balnearia y alrededores
+      </div>
+    </section>
+
+    <div class="dot" aria-hidden="true"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>© <span id="year"></span> QUASSOLO. Todos los derechos reservados.</div>
+      <div class="social">
+        <!-- Poné el link real del IG -->
+        <a href="<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUASSOLO | Cocinas a medida</title>
+  <meta name="description" content="Diseño y fabricación de cocinas a medida. Agendá una reunión por WhatsApp." />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <!-- Open Graph (para que se vea bien al compartir) -->
+  <meta property="og:title" content="QUASSOLO | Cocinas a medida" />
+  <meta property="og:description" content="Diseño, fabricación e instalación. Agendá una reunión por WhatsApp." />
+  <meta property="og:type" content="website" />
+  <!-- Si querés, poné una imagen: /assets/hero.jpg -->
+  <meta property="og:image" content="/assets/hero.jpg" />
+
+  <!-- Favicon (opcional) -->
+  <!-- <link rel="icon" href="/assets/favicon.png" /> -->
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel (PEGÁ TU PIXEL ID) -->
+  <script>
+    // 1) REEMPLAZAR con tu Pixel ID
+    const META_PIXEL_ID = "PEGAR_TU_PIXEL_ID_AQUI";
+
+    // Carga del Pixel
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    if (META_PIXEL_ID && META_PIXEL_ID !== "PEGAR_TU_PIXEL_ID_AQUI") {
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=PEGAR_TU_PIXEL_ID_AQUI&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.35);
+      --btnHover: rgba(255,255,255,.12);
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --maxw: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* HERO FULLSCREEN */
+    .hero{
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 28px 18px;
+      background: url("/assets/hero.jpg") center/cover no-repeat fixed;
+    }
+
+    /* Para iOS: fixed a veces se ve raro, lo apagamos en pantallas chicas */
+    @media (max-width: 768px){
+      .hero{ background-attachment: scroll; }
+    }
+
+    /* Overlay cinematográfico */
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 600px at 50% 60%, rgba(0,0,0,.15), rgba(0,0,0,.72)),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.70));
+    }
+
+    /* Header minimal arriba */
+    .topbar{
+      position:absolute;
+      top: 0;
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 18px;
+      z-index: 3;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--text);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .brand img{
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      opacity: .9;
+      user-select:none;
+    }
+    .menu .pill{
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.15);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Contenido central */
+    .content{
+      position:relative;
+      z-index:2;
+      max-width: var(--maxw);
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 18px;
+      padding-top: 54px; /* espacio por topbar */
+    }
+
+    .logo-big{
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 18px 55px rgba(0,0,0,.55));
+    }
+
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      font-weight: 500;
+    }
+
+    h1{
+      margin: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      line-height: 1.05;
+      font-size: clamp(34px, 6vw, 64px);
+      text-shadow: var(--shadow);
+    }
+
+    .sub{
+      max-width: 760px;
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.7;
+      color: var(--muted);
+      margin-top: 4px;
+      padding: 0 6px;
+    }
+
+    .zone{
+      margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.70);
+      border-top: 1px solid rgba(255,255,255,.18);
+      padding-top: 14px;
+      max-width: 860px;
+    }
+
+    .cta{
+      margin-top: 6px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 16px 26px;
+      border: 1px solid var(--line);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-radius: 2px;
+      background: rgba(0,0,0,.12);
+      backdrop-filter: blur(6px);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      min-width: 240px;
+    }
+    .btn:hover{
+      background: var(--btnHover);
+      border-color: rgba(255,255,255,.55);
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0); }
+
+    .hint{
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* Footer abajo estilo “minimal premium” */
+    .footer{
+      position:absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      z-index: 3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 18px 16px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    .social{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+    .social a{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      padding-bottom: 2px;
+      transition: opacity .15s ease;
+    }
+    .social a:hover{ opacity: .85; }
+
+    /* Botón/indicador central inferior (decorativo) */
+    .dot{
+      position:absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .dot::after{
+      content:"";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 0 18px rgba(255,255,255,.35);
+    }
+
+    /* Ajustes de legibilidad en pantallas muy chicas */
+    @media (max-width: 420px){
+      .brand{ font-size: 14px; }
+      .brand img{ width: 34px; height:34px; }
+      .logo-big{ width: 96px; height:96px; }
+      .btn{ min-width: 220px; padding: 15px 22px; }
+      .menu .pill{ display:none; } /* limpia arriba */
+    }
+  </style>
+</head>
+
+<body>
+  <main class="hero" aria-label="Landing QUASSOLO">
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="Inicio QUASSOLO">
+        <img src="/assets/logo.png" alt="Logo QUASSOLO" />
+        <span>Quassolo</span>
+      </a>
+
+      <div class="menu" aria-hidden="true">
+        <span class="pill">Cocinas a medida</span>
+      </div>
+    </div>
+
+    <!-- Center content -->
+    <section class="content">
+      <!-- Logo arriba del “EXPLORE” como pediste -->
+      <img class="logo-big" src="/assets/logo.png" alt="QUASSOLO" />
+
+      <div class="kicker">Explore</div>
+
+      <h1>Nuevos<br/>proyectos</h1>
+
+      <p class="sub">
+        Diseñamos, fabricamos e instalamos <strong>cocinas a medida</strong> pensadas para tu espacio,
+        tu estilo y tu forma de vivir. Para avanzar, coordinamos una <strong>reunión</strong> (presencial o virtual)
+        y definimos tu proyecto con criterio profesional.
+      </p>
+
+      <div class="cta">
+        <a id="whatsappBtn" class="btn" href="#" rel="noopener" target="_blank">
+          Agendar reunión
+        </a>
+        <div class="hint">Respondemos por WhatsApp y coordinamos día y horario.</div>
+      </div>
+
+      <div class="zone">
+        Zonas: Morteros · Brinkmann · Porteña · Freyre · San Francisco · Suardi · San Guillermo · Villa Trinidad · La Paquita · Altos de Chipión · Balnearia y alrededores
+      </div>
+    </section>
+
+    <div class="dot" aria-hidden="true"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>© <span id="year"></span> QUASSOLO. Todos los derechos reservados.</div>
+      <div class="social">
+        <!-- Poné el link real del IG -->
+        <a href="<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUASSOLO | Cocinas a medida</title>
+  <meta name="description" content="Diseño y fabricación de cocinas a medida. Agendá una reunión por WhatsApp." />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <!-- Open Graph (para que se vea bien al compartir) -->
+  <meta property="og:title" content="QUASSOLO | Cocinas a medida" />
+  <meta property="og:description" content="Diseño, fabricación e instalación. Agendá una reunión por WhatsApp." />
+  <meta property="og:type" content="website" />
+  <!-- Si querés, poné una imagen: /assets/hero.jpg -->
+  <meta property="og:image" content="/assets/hero.jpg" />
+
+  <!-- Favicon (opcional) -->
+  <!-- <link rel="icon" href="/assets/favicon.png" /> -->
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel (PEGÁ TU PIXEL ID) -->
+  <script>
+    // 1) REEMPLAZAR con tu Pixel ID
+    const META_PIXEL_ID = "PEGAR_TU_PIXEL_ID_AQUI";
+
+    // Carga del Pixel
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    if (META_PIXEL_ID && META_PIXEL_ID !== "PEGAR_TU_PIXEL_ID_AQUI") {
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=PEGAR_TU_PIXEL_ID_AQUI&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.35);
+      --btnHover: rgba(255,255,255,.12);
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --maxw: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* HERO FULLSCREEN */
+    .hero{
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 28px 18px;
+      background: url("/assets/hero.jpg") center/cover no-repeat fixed;
+    }
+
+    /* Para iOS: fixed a veces se ve raro, lo apagamos en pantallas chicas */
+    @media (max-width: 768px){
+      .hero{ background-attachment: scroll; }
+    }
+
+    /* Overlay cinematográfico */
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 600px at 50% 60%, rgba(0,0,0,.15), rgba(0,0,0,.72)),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.70));
+    }
+
+    /* Header minimal arriba */
+    .topbar{
+      position:absolute;
+      top: 0;
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 18px;
+      z-index: 3;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--text);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .brand img{
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      opacity: .9;
+      user-select:none;
+    }
+    .menu .pill{
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.15);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Contenido central */
+    .content{
+      position:relative;
+      z-index:2;
+      max-width: var(--maxw);
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 18px;
+      padding-top: 54px; /* espacio por topbar */
+    }
+
+    .logo-big{
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 18px 55px rgba(0,0,0,.55));
+    }
+
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      font-weight: 500;
+    }
+
+    h1{
+      margin: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      line-height: 1.05;
+      font-size: clamp(34px, 6vw, 64px);
+      text-shadow: var(--shadow);
+    }
+
+    .sub{
+      max-width: 760px;
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.7;
+      color: var(--muted);
+      margin-top: 4px;
+      padding: 0 6px;
+    }
+
+    .zone{
+      margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.70);
+      border-top: 1px solid rgba(255,255,255,.18);
+      padding-top: 14px;
+      max-width: 860px;
+    }
+
+    .cta{
+      margin-top: 6px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 16px 26px;
+      border: 1px solid var(--line);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-radius: 2px;
+      background: rgba(0,0,0,.12);
+      backdrop-filter: blur(6px);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      min-width: 240px;
+    }
+    .btn:hover{
+      background: var(--btnHover);
+      border-color: rgba(255,255,255,.55);
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0); }
+
+    .hint{
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* Footer abajo estilo “minimal premium” */
+    .footer{
+      position:absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      z-index: 3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 18px 16px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    .social{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+    .social a{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      padding-bottom: 2px;
+      transition: opacity .15s ease;
+    }
+    .social a:hover{ opacity: .85; }
+
+    /* Botón/indicador central inferior (decorativo) */
+    .dot{
+      position:absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .dot::after{
+      content:"";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 0 18px rgba(255,255,255,.35);
+    }
+
+    /* Ajustes de legibilidad en pantallas muy chicas */
+    @media (max-width: 420px){
+      .brand{ font-size: 14px; }
+      .brand img{ width: 34px; height:34px; }
+      .logo-big{ width: 96px; height:96px; }
+      .btn{ min-width: 220px; padding: 15px 22px; }
+      .menu .pill{ display:none; } /* limpia arriba */
+    }
+  </style>
+</head>
+
+<body>
+  <main class="hero" aria-label="Landing QUASSOLO">
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="Inicio QUASSOLO">
+        <img src="/assets/logo.png" alt="Logo QUASSOLO" />
+        <span>Quassolo</span>
+      </a>
+
+      <div class="menu" aria-hidden="true">
+        <span class="pill">Cocinas a medida</span>
+      </div>
+    </div>
+
+    <!-- Center content -->
+    <section class="content">
+      <!-- Logo arriba del “EXPLORE” como pediste -->
+      <img class="logo-big" src="/assets/logo.png" alt="QUASSOLO" />
+
+      <div class="kicker">Explore</div>
+
+      <h1>Nuevos<br/>proyectos</h1>
+
+      <p class="sub">
+        Diseñamos, fabricamos e instalamos <strong>cocinas a medida</strong> pensadas para tu espacio,
+        tu estilo y tu forma de vivir. Para avanzar, coordinamos una <strong>reunión</strong> (presencial o virtual)
+        y definimos tu proyecto con criterio profesional.
+      </p>
+
+      <div class="cta">
+        <a id="whatsappBtn" class="btn" href="#" rel="noopener" target="_blank">
+          Agendar reunión
+        </a>
+        <div class="hint">Respondemos por WhatsApp y coordinamos día y horario.</div>
+      </div>
+
+      <div class="zone">
+        Zonas: Morteros · Brinkmann · Porteña · Freyre · San Francisco · Suardi · San Guillermo · Villa Trinidad · La Paquita · Altos de Chipión · Balnearia y alrededores
+      </div>
+    </section>
+
+    <div class="dot" aria-hidden="true"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>© <span id="year"></span> QUASSOLO. Todos los derechos reservados.</div>
+      <div class="social">
+        <!-- Poné el link real del IG -->
+        <a href="https://instagram.com/quassolo.amoblamientos" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ✅ 1) WhatsApp: REEMPLAZAR el número (formato: 549 + número sin 0 ni 15)
+    // Ejemplo Córdoba: 549351XXXXXXXX
+    const WHATSAPP_NUMBER = "549XXXXXXXXXX";
+
+    // ✅ 2) Mensaje pre-cargado (filtra al que solo pide precio)
+    const WHATSAPP_TEXT =
+      "Hola! Quiero agendar una reunión (presencial o virtual) para un proyecto de cocina a medida. ¿Qué día y horario tienen disponible?";
+
+    // Link final
+    const waLink = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WHATSAPP_TEXT);
+
+    // Setea link al botón
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = waLink;
+
+    // Año footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ✅ Tracking: evento cuando hacen click al WhatsApp
+    btn.addEventListener("click", function () {
+      try {
+        if (typeof fbq === "function") {
+          // Podés usar Contact o Lead. Para tu caso, Contact está perfecto.
+          fbq("track", "Contact", {
+            content_name: "WhatsApp - Agendar reunión",
+            content_category: "Cocinas a medida"
+          });
+        }
+      } catch (e) {
+        // Silencioso a propósito (no rompemos UX por tracking)
+      }
+    });
+  </script>
+</body>
+</html>" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ✅ 1) WhatsApp: REEMPLAZAR el número (formato: 549 + número sin 0 ni 15)
+    // Ejemplo Córdoba: 549351XXXXXXXX
+    const WHATSAPP_NUMBER = "549XXXXXXXXXX";
+
+    // ✅ 2) Mensaje pre-cargado (filtra al que solo pide precio)
+    const WHATSAPP_TEXT =
+      "Hola! Quiero agendar una reunión (presencial o virtual) para un proyecto de cocina a medida. ¿Qué día y horario tienen disponible?";
+
+    // Link final
+    const waLink = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WHATSAPP_TEXT);
+
+    // Setea link al botón
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = waLink;
+
+    // Año footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ✅ Tracking: evento cuando hacen click al WhatsApp
+    btn.addEventListener("click", function () {
+      try {
+        if (typeof fbq === "function") {
+          // Podés usar Contact o Lead. Para tu caso, Contact está perfecto.
+          fbq("track", "Contact", {
+            content_name: "WhatsApp - Agendar reunión",
+            content_category: "Cocinas a medida"
+          });
+        }
+      } catch (e) {
+        // Silencioso a propósito (no rompemos UX por tracking)
+      }
+    });
+  </script>
+</body>
+</html>" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ✅ 1) WhatsApp: REEMPLAZAR el número (formato: 549 + número sin 0 ni 15)
+    // Ejemplo Córdoba: 549351XXXXXXXX
+    const WHATSAPP_NUMBER = "549XXXXXXXXXX";
+
+    // ✅ 2) Mensaje pre-cargado (filtra al que solo pide precio)
+    const WHATSAPP_TEXT =
+      "Hola! Quiero agendar una reunión (presencial o virtual) para un proyecto de cocina a medida. ¿Qué día y horario tienen disponible?";
+
+    // Link final
+    const waLink = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WHATSAPP_TEXT);
+
+    // Setea link al botón
+    const btn = document.getElementById("whatsappBtn");
+    btn.href = waLink;
+
+    // Año footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ✅ Tracking: evento cuando hacen click al WhatsApp
+    btn.addEventListener("click", function () {
+      try {
+        if (typeof fbq === "function") {
+          // Podés usar Contact o Lead. Para tu caso, Contact está perfecto.
+          fbq("track", "Contact", {
+            content_name: "WhatsApp - Agendar reunión",
+            content_category: "Cocinas a medida"
+          });
+        }
+      } catch (e) {
+        // Silencioso a propósito (no rompemos UX por tracking)
+      }
+    });
+  </script>
 </body>
 </html>
