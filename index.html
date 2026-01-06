@@ -105,13 +105,30 @@
     }
 
     h1{
-      margin: 0;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      line-height: 1.1;
-      font-size: clamp(28px, 4.6vw, 54px);
-      text-shadow: 0 20px 70px rgba(0,0,0,.6);
+     .title{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.title .brand{
+  font-weight: 700;
+  letter-spacing: .18em;
+  font-size: clamp(28px, 4.2vw, 46px);
+  line-height: 1.1;
+  text-shadow: 0 16px 60px rgba(0,0,0,.6);
+}
+
+.title .descriptor{
+  font-weight: 400;
+  letter-spacing: .22em;
+  font-size: clamp(12px, 1.8vw, 15px);
+  opacity: 0.75;
+}
+
     }
 
     .text{
@@ -256,7 +273,11 @@
       </div>
 
       <!-- Título principal reemplazado -->
-      <h1>QUASSOLO - Mueblería de diseño</h1>
+      <h1 class="title">
+  <span class="brand">QUASSOLO</span>
+  <span class="descriptor">Mueblería de diseño</span>
+</h1>
+>
 
       <!-- Texto principal reemplazado -->
       <p class="text">
