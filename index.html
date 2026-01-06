@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUASSOLO | Mueblería de diseño</title>
 
-  <meta name="description" content="Mueblería de diseño. Diseñamos, fabricamos y te acompañamos desde la idea hasta la instalación. Agendá una reunión por WhatsApp." />
+  <meta name="description" content="Mueblería de diseño. Diseñamos, fabricamos y te acompañamos desde la idea hasta la instalación." />
   <meta name="theme-color" content="#0b0b0b" />
 
   <!-- Google Fonts -->
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
   <!-- META PIXEL -->
-  <!-- 🔴 MODIFICACIÓN NECESARIA: reemplazá PEGAR_PIXEL_ID_AQUI por tu Pixel ID real -->
+  <!-- 🔴 REEMPLAZAR SOLO EL ID -->
   <script>
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -25,7 +25,6 @@
       s.parentNode.insertBefore(t,s)
     }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-    // 🔴 CAMBIAR ESTE ID
     fbq('init', 'PEGAR_PIXEL_ID_AQUI');
     fbq('track', 'PageView');
   </script>
@@ -74,252 +73,183 @@
       flex-direction:column;
       align-items:center;
       gap: 14px;
-      padding-top: clamp(40px, 8vh, 82px); /* 👈 subimos todo más arriba */
-      padding-bottom: 120px; /* espacio para zonas + footer */
+      padding-top: clamp(40px, 8vh, 82px);
+      padding-bottom: 160px;
     }
 
-    /* Logo: más abajo (respecto al top), centrado y alineado con textos */
-    .logoWrap{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-bottom: 6px;
-      margin-top: 12px; /* 👈 baja el logo un poco */
-    }
     .logo{
       width: clamp(86px, 12vw, 118px);
-      height:auto;
       filter: drop-shadow(0 18px 55px rgba(0,0,0,.55));
-      opacity: .95;
     }
 
-    /* “Explore” ahora es una frase larga: la hacemos elegante y legible */
-    .kicker{
-      max-width: 720px;
-      font-size: clamp(12px, 1.8vw, 15px);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.80);
-      line-height: 1.5;
-      margin-top: 2px;
-    }
-
-    h1{
-     .title{
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-transform: uppercase;
-}
-
-.title .brand{
-  font-weight: 700;
-  letter-spacing: .18em;
-  font-size: clamp(28px, 4.2vw, 46px);
-  line-height: 1.1;
-  text-shadow: 0 16px 60px rgba(0,0,0,.6);
-}
-
-.title .descriptor{
-  font-weight: 400;
-  letter-spacing: .22em;
-  font-size: clamp(12px, 1.8vw, 15px);
-  opacity: 0.75;
-}
-
-    }
-
-    .text{
-      margin-top: 6px;
-      max-width: 720px;
-      font-size: clamp(14px, 2.2vw, 17px);
-      line-height: 1.75;
-      color: var(--muted);
-      padding: 0 6px;
-    }
-
-    .cta{
-      margin-top: 10px;
+    .title{
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 10px;
+      gap:6px;
+      text-transform:uppercase;
+      margin:0;
+    }
+
+    .title .brand{
+      font-weight:700;
+      letter-spacing:.18em;
+      font-size:clamp(28px,4.2vw,46px);
+      line-height:1.1;
+    }
+
+    .title .descriptor{
+      font-weight:400;
+      letter-spacing:.22em;
+      font-size:clamp(12px,1.8vw,15px);
+      opacity:.75;
+    }
+
+    .kicker{
+      max-width:720px;
+      font-size:clamp(12px,1.8vw,15px);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.8);
+      line-height:1.5;
+      margin-top:6px;
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 15px 28px;
-      border: 1px solid var(--line);
-      border-radius: 2px;
+      margin-top:10px;
+      padding:15px 28px;
+      border:1px solid var(--line);
+      background:var(--bgGlass);
+      color:var(--text);
       text-decoration:none;
-      color: rgba(255,255,255,.92);
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      font-size: 12px;
-      background: var(--bgGlass);
-      backdrop-filter: blur(6px);
-      transition: transform .15s ease, background .2s ease, border-color .2s ease;
-      min-width: 250px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size:12px;
+      transition:.2s;
+      min-width:250px;
     }
-    .btn:hover{
-      background: rgba(255,255,255,.12);
-      border-color: rgba(255,255,255,.55);
-      transform: translateY(-1px);
-    }
-    .btn:active{ transform: translateY(0); }
 
-    /* Zonas: las separamos y las hacemos “chips” para que no se amontonen */
+    .btn:hover{
+      background:rgba(255,255,255,.12);
+      transform:translateY(-1px);
+    }
+
+    .text{
+      max-width:720px;
+      font-size:clamp(14px,2.2vw,17px);
+      line-height:1.75;
+      color:var(--muted);
+    }
+
     .zonesWrap{
       position:absolute;
-      left: 50%;
-      bottom: 56px; /* 👈 arriba del footer */
-      transform: translateX(-50%);
-      width: min(960px, calc(100% - 32px));
-      z-index:2;
+      bottom:70px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(960px,calc(100% - 32px));
       text-align:center;
     }
 
     .zonesTitle{
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.70);
-      margin-bottom: 10px;
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      opacity:.7;
+      margin-bottom:10px;
     }
 
     .zones{
       display:flex;
       flex-wrap:wrap;
-      gap: 8px;
       justify-content:center;
-      align-items:center;
+      gap:8px;
     }
 
     .chip{
-      font-size: 11px;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.78);
-      padding: 8px 10px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      background: rgba(0,0,0,.16);
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
+      font-size:11px;
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(0,0,0,.16);
+      opacity:.8;
+      white-space:nowrap;
     }
 
     footer{
       position:absolute;
-      bottom: 16px;
-      left:0;
-      right:0;
-      z-index:2;
+      bottom:18px;
+      width:100%;
       text-align:center;
-      font-size: 12px;
-      color: rgba(255,255,255,.58);
-      display:flex;
-      gap: 10px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      padding: 0 18px;
+      font-size:12px;
+      opacity:.6;
     }
 
     footer a{
-      color: rgba(255,255,255,.80);
+      color:#fff;
       text-decoration:none;
-      border-bottom: 1px solid rgba(255,255,255,.28);
-      padding-bottom: 2px;
-    }
-    footer a:hover{ opacity: .9; }
-
-    /* Ajustes mobile: más aire y chips más compactos */
-    @media (max-width: 480px){
-      .content{
-        padding-top: 54px;
-        padding-bottom: 150px;
-      }
-      .btn{
-        width: 100%;
-        max-width: 320px;
-      }
-      .chip{
-        font-size: 10px;
-        padding: 7px 9px;
-      }
-      .zonesWrap{
-        bottom: 64px;
-      }
+      border-bottom:1px solid rgba(255,255,255,.3);
+      padding-bottom:2px;
     }
   </style>
 </head>
 
 <body>
   <section class="hero">
-    <div class="overlay" aria-hidden="true"></div>
+    <div class="overlay"></div>
 
     <div class="content">
-      <!-- Logo más abajo y centrado -->
-      <div class="logoWrap">
-        <img src="logo.PNG" alt="QUASSOLO" class="logo" />
-      </div>
 
-      <!-- “Explore” reemplazado por tu frase -->
+      <!-- 1. LOGO -->
+      <img src="logo.PNG" alt="QUASSOLO" class="logo" />
+
+      <!-- 2. TÍTULO -->
+      <h1 class="title">
+        <span class="brand">QUASSOLO</span>
+        <span class="descriptor">Mueblería de diseño</span>
+      </h1>
+
+      <!-- 3. FRASE -->
       <div class="kicker">
         Diseñamos, fabricamos y te acompañamos desde la idea hasta la instalación
       </div>
 
-      <!-- Título principal reemplazado -->
-      <h1 class="title">
-  <span class="brand">QUASSOLO</span>
-  <span class="descriptor">Mueblería de diseño</span>
-</h1>
->
+      <!-- 4. BOTÓN -->
+      <a
+        href="https://wa.me/5493562413914?text=Hola!%20Quiero%20agendar%20una%20reunión%20personalizada."
+        class="btn"
+        target="_blank"
+        onclick="try{fbq('track','Contact');}catch(e){}"
+      >
+        Agendar reunión
+      </a>
 
-      <!-- Texto principal reemplazado -->
+      <!-- 5. TEXTO ACLARATORIO -->
       <p class="text">
         Cada proyecto comienza con una reunión personalizada para entender tu espacio,
         tus necesidades y tu inversión.
       </p>
-
-      <div class="cta">
-        <a
-          class="btn"
-          href="https://wa.me/5493562413914?text=Hola!%20Quiero%20agendar%20una%20reunión%20personalizada%20para%20mi%20proyecto.%20¿Que%20día%20y%20horario%20tienen%20disponible%3F"
-          target="_blank"
-          rel="noopener"
-          onclick="try{fbq('track','Contact',{content_name:'WhatsApp - Agendar reunión',content_category:'Reunión'});}catch(e){}"
-        >
-          Agendar reunión
-        </a>
-      </div>
     </div>
 
-    <!-- Zonas ordenadas (separadas del footer) -->
-    <div class="zonesWrap" aria-label="Zonas de trabajo">
+    <!-- 6. ZONAS -->
+    <div class="zonesWrap">
       <div class="zonesTitle">Zonas de trabajo</div>
       <div class="zones">
         <span class="chip">Morteros</span>
         <span class="chip">San Francisco</span>
         <span class="chip">Villa Trinidad</span>
         <span class="chip">Balnearia</span>
-        <span class="chip">y alrededores</span>
+        <span class="chip">alrededores</span>
       </div>
     </div>
 
-    <!-- Footer prolijo -->
+    <!-- 7. FOOTER -->
     <footer>
-      <span>© <span id="year"></span> QUASSOLO. Todos los derechos reservados.</span>
-      <span>·</span>
-      <a href="https://www.instagram.com/quassolo.amoblamientos" target="_blank" rel="noopener">Instagram</a>
+      © <span id="year"></span> QUASSOLO ·
+      <a href="https://www.instagram.com/quassolo.amoblamientos" target="_blank">Instagram</a>
     </footer>
   </section>
 
   <script>
-    // Año automático (así no queda fijo en 2026)
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
