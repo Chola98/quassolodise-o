@@ -128,25 +128,25 @@
   padding:15px 28px;
   border:1px solid var(--brand);
   background: var(--brand);
-  color:#000; /* contraste premium */
+  color:#000;
   text-decoration:none;
   letter-spacing:.22em;
   text-transform:uppercase;
   font-size:12px;
   transition: all .2s ease;
   min-width:250px;
-  box-shadow: 0 10px 28px rgba (0,0,0,.30);
+  box-shadow: 0 10px 28px rgba(0,0,0,.30); /* ✅ FIX */
   animation: breathe 3.5s ease-in-out 3;
 }
 
-
-    .btn:hover{
-  background: rgba(214,194,154,0.15); /* halo suave */
+.btn:hover{
+  background: rgba(214,194,154,0.15);
   color: #000;
   border-color: var(--brand);
   transform: translateY(-1px);
-  box-shadow: 0 14px 34px rgba (0,0,0,.38);
+  box-shadow: 0 14px 34px rgba(0,0,0,.38); /* ✅ FIX */
 }
+
 
     .text{
       max-width:720px;
